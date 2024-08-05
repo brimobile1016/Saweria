@@ -1,13 +1,18 @@
 {
-    "version": 2,
-    "builds": [
-        { "src": "api/**/*", "use": "@vercel/node" }
-    ],
-    "routes": [
-        { "src": "/api/login", "dest": "/api/login.ts" },
-        { "src": "/api/register", "dest": "/api/register.ts" },
-        { "src": "/api/getUser", "dest": "/api/getUser.ts" },
-        { "src": "/api/createPayment", "dest": "/api/createPayment.ts" },
-        { "src": "/api/status", "dest": "/api/status.ts" }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "maxLambdaSize": "10mb"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.ts"
+    }
+  ]
 }
