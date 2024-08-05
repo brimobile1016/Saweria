@@ -4,7 +4,7 @@
   "description": "Project using Saweria API",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",  // Menambahkan perintah untuk menjalankan server.js
+    "start": "node server.js",
     "build": "vercel build"
   },
   "dependencies": {
