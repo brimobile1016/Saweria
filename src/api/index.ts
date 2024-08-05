@@ -3,7 +3,6 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 
 const app = express();
-const port = process.env.PORT || 3000; // Gunakan PORT dari environment variable atau default ke 3000
 
 class Saweria {
     private BASE_URL: string;
@@ -156,6 +155,4 @@ app.get('/api', async (req: Request, res: Response) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+export default app;
