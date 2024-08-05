@@ -4,11 +4,14 @@
   "description": "Project using Saweria API",
   "main": "index.js",
   "scripts": {
-    "start": "node api/index.js"
+    "start": "node server.js",  // Menambahkan perintah untuk menjalankan server.js
+    "build": "vercel build"
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "cheerio": "^1.0.0-rc.12"
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2"
   },
   "type": "module"
 }
