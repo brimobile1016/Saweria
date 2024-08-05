@@ -147,6 +147,8 @@ app.get('/api', async (req: Request, res: Response) => {
         }
     } catch (e) {
         // Ensure 'e' is of type 'Error' before calling 'toString()'
+        // Logging tambahan untuk membantu debugging
+    console.error('Error details:', e);
         if (e instanceof Error) {
             res.status(500).json({ error: e.toString() });
         } else {
