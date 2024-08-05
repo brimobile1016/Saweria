@@ -1,5 +1,5 @@
 import axios from 'axios';
-import cheerio from 'cheerio'; // Pastikan 'cheerio' di-install jika digunakan
+import cheerio from 'cheerio';
 
 class Saweria {
     constructor() {
