@@ -21,6 +21,7 @@ class Saweria {
     async login(email: string, password: string): Promise<any> {
         try {
             const res = await axios.post(this.BACKEND + "/auth/login", { email, password });
+            console.log('Login Response:', res.data); // Tambahkan ini
             this.setToken(res.headers.authorization);
             this.setSaweria(res.data.data.username);
             return {
@@ -28,6 +29,7 @@ class Saweria {
                 ...res.data,
             };
         } catch (e) {
+            console.error('Login Error:', e); // Tambahkan ini
             throw new Error("Incorrect Email Or Password");
         }
     }
