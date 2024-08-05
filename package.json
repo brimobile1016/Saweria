@@ -1,11 +1,14 @@
 {
-  "name": "your-project",
+  "name": "saweria",
   "version": "1.0.0",
-  "main": "src/api/index.ts",
+  "main": "ts-node-dev src/server.ts",
   "scripts": {
-    "start": "ts-node src/api/index.ts",
-    "dev": "ts-node src/api/index.ts"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node-dev src/server.ts"
   },
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.12",
