@@ -3,6 +3,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 
 const app = express();
+const port = 3000;
 
 class Saweria {
     private BASE_URL: string;
@@ -119,13 +120,10 @@ class Saweria {
 }
 
 const sawer = new Saweria();
-
 // Rute untuk halaman utama
 app.get('/', (req: Request, res: Response) => {
     res.send('Web Aktif');
 });
-
-// Rute API
 app.get('/api', async (req: Request, res: Response) => {
     const { email, password, harga, text, username, paymentId } = req.query;
 
