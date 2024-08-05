@@ -1,12 +1,6 @@
 {
-  "name": "Saweria-Api",
+  "name": "your-project",
   "version": "1.0.0",
-  "main": "dist/api/index.js",
-  "scripts": {
-    "start": "npm run build && node dist/api/index.js",
-    "build": "tsc",
-    "dev": "ts-node src/api/index.ts"
-  },
   "dependencies": {
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.12",
@@ -18,5 +12,9 @@
     "@types/node": "^20.4.6",
     "typescript": "^5.1.6",
     "ts-node": "^10.9.1"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/api/index.ts"
   }
 }
