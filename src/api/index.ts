@@ -3,6 +3,7 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 
 const app = express();
+const port = process.env.PORT || 3000; // Gunakan PORT dari environment variable atau default ke 3000
 
 class Saweria {
     private BASE_URL: string;
@@ -95,6 +96,7 @@ class Saweria {
         };
     }
 
+    // Metode baru untuk mendapatkan status pembayaran
     async getPaymentStatus(id: string): Promise<any> {
         try {
             const data = await axios.get(this.BACKEND + "/donations/qris/" + id).then(v => v.data);
@@ -119,8 +121,17 @@ class Saweria {
 
 const sawer = new Saweria();
 
+// Rute untuk halaman utama
+app.get('/', (req: Request, res: Response) => {
+    res.send('Web Aktif');
+});
+
+// Rute API
 app.get('/api', async (req: Request, res: Response) => {
     const { email, password, harga, text, username, paymentId } = req.query;
+
+    // Debugging log
+    console.log('Query Parameters:', req.query);
 
     try {
         if (email && password && username && harga && text) {
@@ -136,6 +147,7 @@ app.get('/api', async (req: Request, res: Response) => {
             res.status(400).json({ error: "Missing required query parameters" });
         }
     } catch (e) {
+        // Ensure 'e' is of type 'Error' before calling 'toString()'
         if (e instanceof Error) {
             res.status(500).json({ error: e.toString() });
         } else {
@@ -144,4 +156,6 @@ app.get('/api', async (req: Request, res: Response) => {
     }
 });
 
-export default app;
+app.listen(port, () => {
+    console.log(`Server running at http://localhost:${port}`);
+});
