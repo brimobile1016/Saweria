@@ -19,20 +19,31 @@ class Saweria {
     }
 
     async login(email: string, password: string): Promise<any> {
-        try {
-            const res = await axios.post(this.BACKEND + "/auth/login", { email, password });
-            console.log('Login Response:', res.data); // Tambahkan ini
-            this.setToken(res.headers.authorization);
-            this.setSaweria(res.data.data.username);
-            return {
-                authorization: res.headers.authorization,
-                ...res.data,
-            };
-        } catch (e) {
-            console.error('Login Error:', e); // Tambahkan ini
-            throw new Error("Incorrect Email Or Password");
-        }
+    try {
+        const res = await axios.post(this.BACKEND + "/auth/login", 
+            { email, password },
+            {
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                    'Accept': 'application/json, text/plain, */*',
+                    'Accept-Language': 'en-US,en;q=0.9',
+                    'Content-Type': 'application/json',
+                    'Connection': 'keep-alive'
+                }
+            }
+        );
+        console.log('Login Response:', res.data); // Tambahkan ini
+        this.setToken(res.headers.authorization);
+        this.setSaweria(res.data.data.username);
+        return {
+            authorization: res.headers.authorization,
+            ...res.data,
+        };
+    } catch (e) {
+        console.error('Login Error:', e); // Tambahkan ini
+        throw new Error("Incorrect Email Or Password");
     }
+}
 
     async getUser(): Promise<any> {
         if (!this.token) throw new Error("Please login first or setup token manually");
