@@ -3,7 +3,6 @@ import axios from 'axios';
 import cheerio from 'cheerio';
 
 const app = express();
-const port = 3000;
 
 class Saweria {
     private BASE_URL: string;
@@ -151,6 +150,4 @@ app.get('/api', async (req: Request, res: Response) => {
 });
 
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-});
+export default app;
