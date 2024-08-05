@@ -95,7 +95,6 @@ class Saweria {
         };
     }
 
-    // Metode baru untuk mendapatkan status pembayaran
     async getPaymentStatus(id: string): Promise<any> {
         try {
             const data = await axios.get(this.BACKEND + "/donations/qris/" + id).then(v => v.data);
@@ -123,9 +122,6 @@ const sawer = new Saweria();
 app.get('/api', async (req: Request, res: Response) => {
     const { email, password, harga, text, username, paymentId } = req.query;
 
-    // Debugging log
-    console.log('Query Parameters:', req.query);
-
     try {
         if (email && password && username && harga && text) {
             await sawer.login(email as string, password as string);
@@ -140,7 +136,6 @@ app.get('/api', async (req: Request, res: Response) => {
             res.status(400).json({ error: "Missing required query parameters" });
         }
     } catch (e) {
-        // Ensure 'e' is of type 'Error' before calling 'toString()'
         if (e instanceof Error) {
             res.status(500).json({ error: e.toString() });
         } else {
@@ -148,6 +143,5 @@ app.get('/api', async (req: Request, res: Response) => {
         }
     }
 });
-
 
 export default app;
